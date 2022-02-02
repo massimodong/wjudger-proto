@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+service WJudger {
+  rpc Judge(JudgeArgs) returns (stream JudgeReply) {}
+}
+
+message JudgeArgs {
+  string code = 1;
+  enum Language {
+    C = 0;
+    CPP = 1;
+    PASCAL = 2;
+    JAVA = 3;
+    PYTHON = 4;
+  }
+  Language language = 2;
+  uint64 timelimit = 3;
+  double memorylimit = 4;
+}
+
+message JudgeReply {
+  enum ResultType {
+    COMPILE = 0;
+    EXECUTE = 1;
+  }
+  ResultType resultType = 1;
+  CompileResult compileResult = 2;
+  ExecuteResult executeResult = 3;
+}
+
+message CompileResult{
+  bool compile_error = 1;
+  repeated string testcases = 2;
+}
+
+message ExecuteResult{
+  string testcase = 1;
+  uint64 timeused = 2;
+  double memoryused = 3;
+  uint32 score = 4;
+  string verdict = 5;
+  string msg = 6;
+}
