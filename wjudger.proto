@@ -16,6 +16,7 @@ message JudgeArgs {
   Language language = 2;
   uint64 timelimit = 3;
   double memorylimit = 4;
+  uint32 dataId = 5;
 }
 
 message JudgeReply {
