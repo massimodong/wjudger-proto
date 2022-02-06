@@ -1,4 +1,5 @@
 syntax = "proto3";
+package WJudger;
 
 service WJudger {
   rpc Judge(JudgeArgs) returns (stream JudgeReply) {}
