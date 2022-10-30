@@ -3,17 +3,33 @@ package WJudger;
 
 service WJudger {
   rpc Judge(JudgeArgs) returns (stream JudgeReply) {}
+  rpc Simple(SimpleArgs) returns (SimpleReply) {}
+}
+
+enum Language {
+  C = 0;
+  CPP = 1;
+  PASCAL = 2;
+  JAVA = 3;
+  PYTHON = 4;
+}
+
+message SimpleArgs {
+  string code = 1;
+  Language language = 2;
+  string input = 3;
+}
+
+message SimpleReply {
+  bool compileError = 1;
+  bool runtimeError = 2;
+  string compileErrorMessage = 3;
+  string runtimeErrorMessage = 4;
+  string output = 5;
 }
 
 message JudgeArgs {
   string code = 1;
-  enum Language {
-    C = 0;
-    CPP = 1;
-    PASCAL = 2;
-    JAVA = 3;
-    PYTHON = 4;
-  }
   Language language = 2;
   uint64 timelimit = 3;
   double memorylimit = 4;
@@ -25,13 +41,14 @@ message JudgeReply {
     COMPILE = 0;
     EXECUTE = 1;
   }
+
   ResultType resultType = 1;
   CompileResult compileResult = 2;
   ExecuteResult executeResult = 3;
 }
 
 message CompileResult{
-  bool compile_error = 1;
+  bool compileEror = 1;
   repeated string testcases = 2;
 }
 
