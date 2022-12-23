@@ -15,17 +15,20 @@ enum Language {
 }
 
 message SimpleArgs {
-  string code = 1;
-  Language language = 2;
-  string input = 3;
+  string token = 1;
+  string code = 2;
+  Language language = 3;
+  string input = 4;
 }
 
 message SimpleReply {
   bool compileError = 1;
-  bool runtimeError = 2;
+  uint32 runtimeError = 2;
   string compileErrorMessage = 3;
   string runtimeErrorMessage = 4;
-  string output = 5;
+  uint64 timeused = 5;
+  double memoryused = 6;
+  string output = 7;
 }
 
 message JudgeArgs {
