@@ -6,6 +6,12 @@ service WJudger {
   rpc Simple(SimpleArgs) returns (SimpleReply) {}
 }
 
+enum JudgeStatus {
+  OK = 0;
+  UNAUTHENTICATED = 1;
+  BUSY = 2;
+}
+
 enum Language {
   C = 0;
   CPP = 1;
@@ -15,20 +21,22 @@ enum Language {
 }
 
 message SimpleArgs {
-  string token = 1;
-  string code = 2;
-  Language language = 3;
-  string input = 4;
+  uint32 judgerid = 1;
+  string token = 2;
+  string code = 3;
+  Language language = 4;
+  string input = 5;
 }
 
 message SimpleReply {
-  bool compileError = 1;
-  uint32 runtimeError = 2;
-  string compileErrorMessage = 3;
-  string runtimeErrorMessage = 4;
-  uint64 timeused = 5;
-  double memoryused = 6;
-  string output = 7;
+  JudgeStatus status = 1;
+  bool compileError = 2;
+  uint32 runtimeError = 3;
+  string compileErrorMessage = 4;
+  string runtimeErrorMessage = 5;
+  uint64 timeused = 6;
+  uint64 memoryused = 7;
+  string output = 8;
 }
 
 message JudgeArgs {
