@@ -21,11 +21,10 @@ enum Language {
 }
 
 message SimpleArgs {
-  uint32 judgerid = 1;
-  string token = 2;
-  string code = 3;
-  Language language = 4;
-  string input = 5;
+  string token = 1;
+  string code = 2;
+  Language language = 3;
+  string input = 4;
 }
 
 message SimpleReply {
@@ -40,11 +39,12 @@ message SimpleReply {
 }
 
 message JudgeArgs {
-  string code = 1;
-  Language language = 2;
-  uint64 timelimit = 3;
-  double memorylimit = 4;
-  uint32 dataId = 5;
+  string token = 1;
+  string code = 2;
+  Language language = 3;
+  uint64 timelimit = 4;
+  double memorylimit = 5;
+  string datapath = 6;
 }
 
 message JudgeReply {
@@ -59,7 +59,7 @@ message JudgeReply {
 }
 
 message CompileResult{
-  bool compileEror = 1;
+  bool compileError = 1;
   repeated string testcases = 2;
 }
 
